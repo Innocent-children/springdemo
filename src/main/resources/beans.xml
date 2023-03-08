@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置AccountService接口实现类，由Spring的IOC容器管理-->
+<!--    <bean id="accountService" class="org.example.service.AccountServiceImpl">-->
+<!--        &lt;!&ndash;构造函数注入accountDao&ndash;&gt;-->
+<!--        <constructor-arg name="accountDao" ref="accountDao"/>-->
+<!--    </bean>-->
+    <!--配置AccountDao接口实现类，由Spring的IOC容器管理-->
+<!--    <bean id="accountDao" class="org.example.dao.AccountDaoImpl">-->
+<!--        &lt;!&ndash;构造函数注入查询DBUtils的执行对象queryRunner&ndash;&gt;-->
+<!--        <constructor-arg name="queryRunner" ref="queryRunner"/>-->
+<!--    </bean>-->
+    <!--配置QueryRunner，由Spring的IOC容器管理-->
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+        <!--构造函数注入数据源DataSource-->
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+    <!--配置DBCP数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <!--数据库驱动-->
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <!--数据库地址-->
+        <property name="url" value="jdbc:mysql://localhost:3306/springdemo?characterEncoding=utf8"/>
+        <!--数据库用户名-->
+        <property name="username" value="root"/>
+        <!--数据库密码-->
+        <property name="password" value="12345"/>
+    </bean>
+</beans>
